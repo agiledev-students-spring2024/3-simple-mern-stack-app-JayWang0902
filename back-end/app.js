@@ -57,6 +57,25 @@ app.get('/messages/:messageId', async (req, res) => {
     })
   }
 })
+
+app.use(express.static('public'));
+// Define the data for the "About Us" page
+const aboutUsData = {
+  title: "About Us",
+  content: [
+    "I'm Rongjian (Jay) Wang, a Junior student at New York University, where I'm diving deep into the world of Computer and Data Science. Originally from Beijing, China, I've found a second home amidst the heart of Manhattan, a cosmopolitan and innovative hub of creativity, diversity, and academic excellence.",
+    "My interests span a wide spectrum, from the adrenaline rush of sports to the rich narratives of history and the rhythmic expressions of music, among others. These diverse hobbies serve as my sanctuary, offering both a creative outlet and a mental reset. They underscore the principle that learning transcends the confines of classrooms, infusing every aspect of our lives.",
+    "As I journey through my academic and personal development, I am keen on leveraging technology to craft innovative solutions that resonate in this AI-driven epoch. My current endeavor is to absorb knowledge, evolve, and establish meaningful connections with individuals who share a similar passion and drive."
+  ],
+  imageUrl: "http://localhost:5002/myp.jpg"
+};
+
+// Add a new route for the "About Us" page
+app.get('/about', (req, res) => {
+  res.json(aboutUsData);
+});
+
+
 // a route to handle logging out users
 app.post('/messages/save', async (req, res) => {
   // try to save the message to the database
